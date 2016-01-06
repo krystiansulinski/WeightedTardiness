@@ -20,7 +20,6 @@ public class ManageInputFile {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         return textScannerOfInputFile;
     }
 
@@ -35,7 +34,6 @@ public class ManageInputFile {
             textScannerOfInputFile.nextInt();
             numberOfIntegersInInputFile++;
         }
-
         return numberOfIntegersInInputFile;
     }
 

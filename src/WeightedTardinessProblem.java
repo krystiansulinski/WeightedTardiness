@@ -5,10 +5,7 @@ import java.io.IOException;
  */
 public class WeightedTardinessProblem {
     public static void main(String[] args) throws IOException {
-        String fileDirectory = "X:\\Krystian\\studia\\mgr\\Research_Skills_and_Methodologies\\";
-        String fileName = "wt1.txt";
-        String filePath = fileDirectory + fileName;
-
+        String filePath = "/Users/krystian/Documents/studia/IX_semester/pwr/rsm/my_data/wt1.txt";
         SimpleTestData problemData = new SimpleTestData(filePath, 1);
     }
 }
