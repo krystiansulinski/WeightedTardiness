@@ -1,33 +1,25 @@
-import java.util.ArrayList;
+class Solver {
+    private Instances instances;
+    private int totalWeightedTardiness = 0;
 
-/**
- * Created by krystian on 10/01/2016.
- */
-public class Solver {
-    private ArrayList<Job> instances;
-    private int totalWeightedTardiness;
-
-    public Solver(ArrayList<Job> instances) {
+    public Solver(Instances instances) {
         this.instances = instances;
-        this.totalWeightedTardiness = 0;
-        Solve();
     }
 
-    public void Solve() {
-        for (int i = 0; i < instances.size(); ++i) {
-            totalWeightedTardiness += instances.get(i).getWeight() * tardiness(i);
+    public void solve(final int fileNumber) {
+        for (int i = 0; i < instances.get(fileNumber).size(); ++i) {
+            totalWeightedTardiness += instances.get(fileNumber).get(i).getWeight() * tardiness(fileNumber, i);
         }
     }
 
-    private int tardiness(int i) {
-        int tardiness = Math.max(completionTime(i) - instances.get(i).getDueDate(), 0);
-        return tardiness;
+    private int tardiness(final int fileNumber, final int index) {
+        return Math.max(completionTime(fileNumber, index) - instances.get(fileNumber).get(index).getDueDate(), 0);
     }
 
-    private int completionTime(int i) {
+    private int completionTime(final int fileNumber, final int index) {
         int completionTime = 0;
-        for (int j = 0; j <= i; ++j) {
-            completionTime += instances.get(j).getProcessingTime();
+        for (int i = 0; i <= index; ++i) {
+            completionTime += instances.get(fileNumber).get(i).getProcessingTime();
         }
         return completionTime;
     }

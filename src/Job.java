@@ -1,16 +1,27 @@
-/**
- * Created by krystian on 10/01/2016.
- */
-public class Job {
+class Job {
+    private final int processingTime;
+    private final int weight;
+    private final int dueDate;
 
-    private int processingTime;
-    private int weight;
-    private int dueDate;
-
-    public Job(int processingTime, int weight, int dueDate) {
+    public Job(final int processingTime, final int weight, final int dueDate) {
+        if (processingTime < 0 || weight < 0 || dueDate < 0) {
+            System.out.println("Variables should be positive.");
+        }
         this.processingTime = processingTime;
         this.weight = weight;
         this.dueDate = dueDate;
+    }
+
+    public int getProcessingTime() {
+        return processingTime;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getDueDate() {
+        return dueDate;
     }
 
     @Override
@@ -22,27 +33,4 @@ public class Job {
                 '}';
     }
 
-    public int getProcessingTime() {
-        return processingTime;
-    }
-
-    public void setProcessingTime(int processingTime) {
-        this.processingTime = processingTime;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(int dueDate) {
-        this.dueDate = dueDate;
-    }
 }
