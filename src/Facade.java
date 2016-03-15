@@ -1,11 +1,19 @@
-public class Facade {
-    public static void main(String[] args) {
-        String filePath = "/Users/krystian/Documents/studia/IX_semester/pwr/rsm/my_data/wt1.txt";
-        int fileNumber = 0;
-        Factory factory = new Factory();
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
-        factory.createFile(fileNumber, filePath);
-        factory.createCollection(fileNumber, 1, 3);
-        System.out.println(factory.getSolution(fileNumber));
+class Facade {
+    static Factory factory;
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+        factory = new Factory();
+
+        int files = 2;                  // [1 - 20]
+        int instances = 10;             // [1 - 10]
+        int jobs = 5;                   // [1 - 6]
+
+        int processingTimeRange = 100;   // [1, processingTimeRange], defaults to 100
+        int weightRange = 10;            // [1, weightRange], defaults to 10
+
+        factory.generateInputFiles(files, instances, jobs, processingTimeRange, weightRange);
+        factory.generateOutputFilesWithBruteForceSearch(files, instances, jobs);
     }
 }

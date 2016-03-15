@@ -1,33 +1,37 @@
 import java.util.ArrayList;
 
-public class Instances {
-    private ArrayList<ArrayList<Job>> instances;
+class Instances {
+    private ArrayList<Instance> instances;
 
-    public Instances(ArrayList<ArrayList<Job>> instances) {
-        this.instances = instances;
+    public Instances() {
+        instances = new ArrayList<>();
     }
 
-    public boolean add(ArrayList<Job> instance) {
-        return instances.add(instance);
-    }
-
-    public ArrayList<Job> get(int index) {
-        return instances.get(index);
+    public Instances(int size) {
+        instances = new ArrayList<>(size);
     }
 
     public int size() {
         return instances.size();
     }
 
-    public int size(int index) {
-        return instances.get(index).size();
+    public int jobSze() {
+        return instances.get(0).size();
     }
 
-    public Job getJob(int indexOfInstance, int indexOfJob) {
-        return instances.get(indexOfInstance).get(indexOfJob);
+    public boolean add(Instance instance) {
+        return instances.add(instance);
     }
 
-    public ArrayList<ArrayList<Job>> getInstances() {
+    public void set(ArrayList<Instance> instances) {
+        this.instances = instances;
+    }
+
+    public Instance get(int index) {
+        return instances.get(index);
+    }
+
+    public ArrayList<Instance> get() {
         return instances;
     }
 

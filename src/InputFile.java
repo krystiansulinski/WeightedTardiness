@@ -11,7 +11,6 @@ class InputFile {
     public InputFile(String filePath) {
         file = new File(filePath);
         createScanner();
-        readFile();
     }
 
     private void createScanner() {
@@ -22,7 +21,7 @@ class InputFile {
         }
     }
 
-    private void readFile() {
+    public void readFile() {
         content = new ArrayList<>();
         while (this.scanner.hasNextInt()) {
             content.add(this.scanner.nextInt());

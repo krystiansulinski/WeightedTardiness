@@ -1,37 +1,38 @@
 class Solver {
-    private Instances instances;
-    private int totalWeightedTardiness = 0;
+    private Instance instance;
+    private long totalWeightedTardiness;
 
-    public Solver(Instances instances) {
-        this.instances = instances;
+    public Solver(Instance instance) {
+        this.instance = instance;
+        totalWeightedTardiness = 0;
     }
 
-    public void solve(final int fileNumber) {
-        for (int i = 0; i < instances.get(fileNumber).size(); ++i) {
-            totalWeightedTardiness += instances.get(fileNumber).get(i).getWeight() * tardiness(fileNumber, i);
+    public void solve() {
+        for (int i = 0; i < instance.size(); ++i) {
+            totalWeightedTardiness += instance.getJob(i).getWeight() * tardiness(i);
         }
     }
 
-    private int tardiness(final int fileNumber, final int index) {
-        return Math.max(completionTime(fileNumber, index) - instances.get(fileNumber).get(index).getDueDate(), 0);
+    private int tardiness(final int index) {
+        return Math.max(completionTime(index) - instance.getJob(index).getDueDate(), 0);
     }
 
-    private int completionTime(final int fileNumber, final int index) {
+    private int completionTime(final int index) {
         int completionTime = 0;
         for (int i = 0; i <= index; ++i) {
-            completionTime += instances.get(fileNumber).get(i).getProcessingTime();
+            completionTime += instance.getJob(i).getProcessingTime();
         }
         return completionTime;
     }
 
-    public int getTotalWeightedTardiness() {
+    public long getTotalWeightedTardiness() {
         return totalWeightedTardiness;
     }
 
     @Override
     public String toString() {
         return "Solver{" +
-                "instances=" + instances +
+                "instance=" + instance +
                 ", totalWeightedTardiness=" + totalWeightedTardiness +
                 '}';
     }

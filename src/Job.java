@@ -1,7 +1,10 @@
 class Job {
-    private final int processingTime;
-    private final int weight;
-    private final int dueDate;
+    private int processingTime;
+    private int weight;
+    private int dueDate;
+
+    public Job() {
+    }
 
     public Job(final int processingTime, final int weight, final int dueDate) {
         if (processingTime < 0 || weight < 0 || dueDate < 0) {
@@ -32,5 +35,4 @@ class Job {
                 ", dueDate=" + dueDate +
                 '}';
     }
-
 }
