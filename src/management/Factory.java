@@ -1,8 +1,16 @@
+package management;
+
+import algorithms.Permutations;
+import algorithms.Solver;
+import skeleton.Instance;
+import skeleton.Instances;
+import skeleton.Job;
+
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-class Factory {
+public class Factory {
     private FileGenerator fileGenerator;
     private ArrayList<InputFile> file;
     private ArrayList<Instances> instances;

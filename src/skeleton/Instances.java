@@ -1,6 +1,8 @@
+package skeleton;
+
 import java.util.ArrayList;
 
-class Instances {
+public class Instances {
     private ArrayList<Instance> instances;
 
     public Instances() {
@@ -37,7 +39,7 @@ class Instances {
 
     @Override
     public String toString() {
-        return "Instances{" +
+        return "skeleton.Instances{" +
                 "instances=" + instances +
                 '}';
     }

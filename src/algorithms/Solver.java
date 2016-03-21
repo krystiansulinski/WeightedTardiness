@@ -1,4 +1,8 @@
-class Solver {
+package algorithms;
+
+import skeleton.Instance;
+
+public class Solver {
     private Instance instance;
     private long totalWeightedTardiness;
 
@@ -31,7 +35,7 @@ class Solver {
 
     @Override
     public String toString() {
-        return "Solver{" +
+        return "algorithms.Solver{" +
                 "instance=" + instance +
                 ", totalWeightedTardiness=" + totalWeightedTardiness +
                 '}';

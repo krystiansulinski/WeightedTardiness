@@ -1,9 +1,11 @@
+package management;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class InputFile {
+public class InputFile {
     private final File file;
     private Scanner scanner;
     private ArrayList<Integer> content;

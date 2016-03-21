@@ -1,4 +1,6 @@
-class Job {
+package skeleton;
+
+public class Job {
     private int processingTime;
     private int weight;
     private int dueDate;
@@ -29,7 +31,7 @@ class Job {
 
     @Override
     public String toString() {
-        return "Job{" +
+        return "skeleton.Job{" +
                 "processingTime=" + processingTime +
                 ", weight=" + weight +
                 ", dueDate=" + dueDate +

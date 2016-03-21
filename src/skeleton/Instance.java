@@ -1,6 +1,8 @@
+package skeleton;
+
 import java.util.ArrayList;
 
-class Instance {
+public class Instance {
     private ArrayList<Job> instance;
 
     public Instance() {
@@ -34,7 +36,7 @@ class Instance {
 
     @Override
     public String toString() {
-        return "Instance{" +
+        return "skeleton.Instance{" +
                 "instance=" + instance +
                 '}';
     }

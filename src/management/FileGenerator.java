@@ -1,3 +1,5 @@
+package management;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -8,6 +10,7 @@ import java.util.Random;
  * Created by krystian on 13/03/2016.
  */
 public class FileGenerator {
+    static private int count = 0;
     private ArrayList<String> fileNames = new ArrayList<>();
     private int filesCount;
     private int instancesCount;
@@ -19,11 +22,13 @@ public class FileGenerator {
         this.jobsCount = jobsCount;
         createFiles(processingTimeRange, weightRange);
     }
+
     private void createFiles(int processingTimeRange, int weightRange) throws FileNotFoundException, UnsupportedEncodingException {
         ArrayList<PrintWriter> writer = new ArrayList<>(jobsCount);
 
         for (int fileNumber = 0; fileNumber < filesCount; ++fileNumber) {
-            fileNames.add("wt" + fileNumber + ".txt");
+            ++count;
+            fileNames.add("wt" + fileNumber + "_" + count + ".txt");
             writer.add(new PrintWriter(fileNames.get(fileNumber), "UTF-8"));
 
             for (int i = 0; i < instancesCount; ++i) {
