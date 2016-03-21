@@ -11,11 +11,15 @@ import javafx.stage.Stage;
  */
 
 public class Main extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("scheme.fxml"));
-        Scene scene = new Scene(root, 300, 275);
-        stage.setTitle("FXML Welcome");
+        Scene scene = new Scene(root, 700, 350);
+        stage.setTitle("The Single Machine Total Weighted Tardiness Problem");
         stage.setScene(scene);
         stage.show();
     }
