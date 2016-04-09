@@ -4,11 +4,12 @@ import skeleton.Instance;
 
 public class Solver {
     private Instance instance;
-    private long totalWeightedTardiness;
+    public int totalWeightedTardiness;
 
     public Solver(Instance instance) {
         this.instance = instance;
         totalWeightedTardiness = 0;
+        solve();
     }
 
     public void solve() {
@@ -18,7 +19,8 @@ public class Solver {
     }
 
     private int tardiness(final int index) {
-        return Math.max(completionTime(index) - instance.getJob(index).getDueDate(), 0);
+        int tardiness = Math.max(completionTime(index) - instance.getJob(index).getDueDate(), 0);
+        return tardiness;
     }
 
     private int completionTime(final int index) {
@@ -27,10 +29,6 @@ public class Solver {
             completionTime += instance.getJob(i).getProcessingTime();
         }
         return completionTime;
-    }
-
-    public long getTotalWeightedTardiness() {
-        return totalWeightedTardiness;
     }
 
     @Override

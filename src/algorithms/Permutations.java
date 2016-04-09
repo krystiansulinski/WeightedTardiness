@@ -5,67 +5,72 @@ import java.util.ArrayList;
 /**
  * Created by krystian on 8/03/2016.
  */
-public class Permutations {
+class Permutations {
     private ArrayList<ArrayList<Integer>> permutations;
-    private boolean addedFirstPermutation = false;
+    private static long elapsedTime;
+    private static boolean addedFirstPermutation = false;
 
-    public Permutations() {
+    Permutations(final int n) {
+        permuteFromZeroToN(n);
+    }
+
+    private void permuteFromZeroToN(final int n) {
         permutations = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
+        permuteFromZeroToN(n, createIntegersFromOneToN(n));
+
+        elapsedTime = System.currentTimeMillis() - startTime;
     }
 
-    public void permute(int n) {
-        ArrayList<Integer> list = new ArrayList<>(n);
-        for (int i = 0; i < n; ++i) {
-            list.add(i+1);
+    private ArrayList<Integer> createIntegersFromOneToN(final int lastValue) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < lastValue; ++i) {
+            list.add(i);
         }
-
-        permute(n, list);
-        for (int i = 0; i < permutations.size(); ++i) {
-            for (int j = 0; j < permutations.get(i).size(); ++j) {
-                permutations.get(i).set(j, permutations.get(i).get(j) - 1);
-            }
-        }
+        return list;
     }
-    private void permute(int n, ArrayList<Integer> list) {
+
+    private void permuteFromZeroToN(final int n, ArrayList<Integer> permutable) {
         if (!addedFirstPermutation) {
-            addPermutation(list);
+            permutations.add(getDeepCopy(permutable));
             addedFirstPermutation = true;
         }
         if (n != 1) {
             for (int i = 0; i < n - 1; ++i) {
-                permute(n - 1, list);
+                permuteFromZeroToN(n - 1, permutable);
+
                 int temp;
                 if (n % 2 == 0) {
-                    temp = list.get(i);
-                    list.set(i, list.get(n-1));
+                    temp = permutable.get(i);
+                    permutable.set(i, permutable.get(n - 1));
                 } else {
-                    temp = list.get(0);
-                    list.set(0, list.get(n-1));
+                    temp = permutable.get(0);
+                    permutable.set(0, permutable.get(n - 1));
                 }
-                list.set(n-1, temp);
-                addPermutation(list);
+                permutable.set(n - 1, temp);
+                permutations.add(getDeepCopy(permutable));
             }
-            permute(n - 1, list);
+            permuteFromZeroToN(n - 1, permutable);
         }
     }
 
-    private void addPermutation(ArrayList<Integer> permutation) {
-        ArrayList<Integer> array = new ArrayList<>();
-        for (Integer p : permutation) {
-            array.add(p);
+    private ArrayList<Integer> getDeepCopy(ArrayList<Integer> copying) {
+        ArrayList<Integer> deepCopied = new ArrayList<>(copying.size());
+        for(Integer element: copying) {
+            deepCopied.add(element);
         }
-        permutations.add(array);
-    }
+        return deepCopied;
+     }
 
     public int size() {
-        return permutations.size()*permutations.get(0).size();
-    }
-
-    public ArrayList<Integer> getPermutation(int index) {
-        return permutations.get(index);
+        return permutations.size();
     }
 
     public ArrayList<ArrayList<Integer>> getPermutations() {
         return permutations;
+    }
+
+    public static long getElapsedTime() {
+        return elapsedTime;
     }
 }

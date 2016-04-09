@@ -13,6 +13,7 @@ public class InputFile {
     public InputFile(String filePath) {
         file = new File(filePath);
         createScanner();
+        loadContent();
     }
 
     private void createScanner() {
@@ -23,11 +24,15 @@ public class InputFile {
         }
     }
 
-    public void readFile() {
+    private void loadContent() {
         content = new ArrayList<>();
         while (this.scanner.hasNextInt()) {
             content.add(this.scanner.nextInt());
         }
+    }
+
+    public int getJobSize(final int instanceSize) {
+        return (content.size()/instanceSize/3);
     }
 
     public ArrayList<Integer> getContent(final int firstIndex, final int lastIndex) {
@@ -40,5 +45,9 @@ public class InputFile {
 
     public ArrayList<Integer> getContent() {
         return content;
+    }
+
+    public File getFile() {
+        return file;
     }
 }

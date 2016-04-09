@@ -7,61 +7,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import java.net.URL?>
-<GridPane fx:controller="gui.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="CENTER_LEFT" hgap="10" vgap="10"
-          styleClass="root">
-    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+<GridPane alignment="CENTER_LEFT" hgap="10" prefHeight="294.0" prefWidth="366.0" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+    <children>
+       <Text id="welcome-text" text="Create a File" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <Text id="welcome-text" text="Weighted Tardiness"
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="2"/>
+       <Label text="instances" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+       <TextField fx:id="instances" alignment="TOP_LEFT" promptText="1-20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label text="instances"
-           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+       <Label text="jobs:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+       <TextField fx:id="jobs" promptText="1-6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <TextField fx:id="instances"
-            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+       <Label text="processing time range:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+       <TextField fx:id="processingTimeRange" promptText="100" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
+       <Label text="weight range:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+       <TextField fx:id="weightRange" promptText="20" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-    <Label text="jobs:"
-           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+       <Label text="filename:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+       <TextField fx:id="filename" promptText="default filename" GridPane.columnIndex="1" GridPane.rowIndex="5"
+       disable="true"/>
 
-    <TextField fx:id="jobs"
-            GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+           <children>
+                  <Button onAction="#handleCreateFileButtonAction" text="Create File" />
+           </children>
+       </HBox>
 
+       <LineChart fx:id="graph" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="8">
+           <xAxis><NumberAxis label="job order" lowerBound="0" upperBound="3" tickUnit="1"/></xAxis>
+           <yAxis><NumberAxis label="weighted tardiness" lowerBound="0" upperBound="3" tickUnit="1"/></yAxis>
+       </LineChart>
 
-    <Label text="processingTime range:"
-           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-
-    <TextField fx:id="processingTimeRange"
-            GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-
-
-    <Label text="weight range:"
-           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-
-    <TextField fx:id="weightRange"
-            GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-
-
-    <Label text="number of files"
-           GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-
-    <TextField fx:id="numberOfFiles"
-            GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-
-    <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="6">
-        <Button text="Run"
-                onAction="#handleRunButtonAction"/>
-    </HBox>
-
-    <!--<LineChart fx:id="lineChart" height="100" width="100"-->
-            <!--GridPane.columnIndex="2" GridPane.rowIndex="0"-->
-            <!--GridPane.columnSpan="2"/>-->
-
+    </children>
     <stylesheets>
         <URL value="@Scheme.css" />
     </stylesheets>
-
 </GridPane>

@@ -1,44 +1,44 @@
 package skeleton;
 
+import algorithms.Solver;
+
 import java.util.ArrayList;
 
 public class Instance {
     private ArrayList<Job> instance;
 
-    public Instance() {
-        instance = new ArrayList<Job>();
+    public Instance(Instance instance, ArrayList<Integer> indices) {
+        this.instance = new ArrayList<>(instance.size());
+
+        for (Integer index : indices) {
+            this.instance.add(instance.getJob(index));
+        }
     }
 
-    public Instance(ArrayList<Job> instance) {
-        this.instance = instance;
+    public Instance(final ArrayList<Integer> processingTimes, final ArrayList<Integer> weights, final ArrayList<Integer> dueTimes) {
+        instance = new ArrayList<>(processingTimes.size());
+        for (int job = 0; job < processingTimes.size(); ++job) {
+            instance.add(new Job(processingTimes.get(job), weights.get(job), dueTimes.get(job)));
+        }
     }
 
-    public boolean add(Job job) {
-        return instance.add(job);
+    public int solve() {
+        Solver solver = new Solver(this);
+        return solver.totalWeightedTardiness;
     }
 
     public int size() {
         return instance.size();
     }
 
-    public Job get(int index) {
-        return instance.get(index);
+    @Override
+    public String toString() {
+        return "\n" + "skeleton.Instance{" +
+                "instance=" + instance +
+                '}';
     }
 
     public Job getJob(int index) {
         return instance.get(index);
     }
-
-    public ArrayList<Job> getInstance() {
-        return instance;
-
-    }
-
-    @Override
-    public String toString() {
-        return "skeleton.Instance{" +
-                "instance=" + instance +
-                '}';
-    }
-
 }
