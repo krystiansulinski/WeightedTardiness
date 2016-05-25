@@ -1,6 +1,6 @@
 package algorithms;
 
-import skeleton.Instance;
+import problem.Order;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,25 +14,27 @@ public class BruteForceSearch {
     private long size;
     private long elapsedTime;
 
-    public BruteForceSearch(final ArrayList<Instance> dataSet) {
+    public BruteForceSearch(final ArrayList<Order> dataSet) {
         solution = new HashMap<>(dataSet.size());
         run(dataSet);
     }
 
-    private void run(final ArrayList<Instance> dataSet) {
-        ArrayList<ArrayList<Integer>> indices= new ArrayList<>();
+    private void run(final ArrayList<Order> dataSet) {
+        ArrayList<ArrayList<Integer>> indices;
         ArrayList<Integer> totalWeightedTardinesses;
 
-        final int numberOfJobs = dataSet.get(0).size();
+        final int numberOfJobs = dataSet.get(0).jobsSize();
         Permutations permutations = new Permutations(numberOfJobs);
 
-        for (Instance instance : dataSet) {
+        int i = 0;
+        for (Order jobs : dataSet) {
+            indices = new ArrayList<>();
             totalWeightedTardinesses = new ArrayList<>();
             for (ArrayList<Integer> jobOrder : permutations.getPermutations()) {
-                Instance permutedInstance = new Instance(instance, jobOrder);
+                Order permutedOrder = new Order(jobs, jobOrder);
 
                 indices.add(jobOrder);
-                totalWeightedTardinesses.add(permutedInstance.solve());
+                totalWeightedTardinesses.add(permutedOrder.getTardiness());
             }
             solution.put(indices, totalWeightedTardinesses);
         }

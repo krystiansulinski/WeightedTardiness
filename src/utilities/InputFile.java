@@ -1,4 +1,4 @@
-package management;
+package utilities;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,8 +31,8 @@ public class InputFile {
         }
     }
 
-    public int getJobSize(final int instanceSize) {
-        return (content.size()/instanceSize/3);
+    public int getJobSize(final int jobsSize) {
+        return (content.size()/jobsSize/3);
     }
 
     public ArrayList<Integer> getContent(final int firstIndex, final int lastIndex) {

@@ -7,40 +7,159 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import java.net.URL?>
-<GridPane alignment="CENTER_LEFT" hgap="10" prefHeight="294.0" prefWidth="366.0" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
-    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
-    <children>
-       <Text id="welcome-text" text="Create a File" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-       <Label text="instances" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-       <TextField fx:id="instances" alignment="TOP_LEFT" promptText="1-20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+<TabPane id="TabPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+    <tabs>
+        <Tab text="Brute Force Search">
+            <content>
+                <GridPane alignment="CENTER_LEFT" hgap="10" prefHeight="294.0" prefWidth="366.0" styleClass="root"
+                          vgap="10" xmlns="http://javafx.com/javafx/8">
+                    <padding>
+                        <Insets bottom="10" left="25" right="25" top="25"/>
+                    </padding>
+                    <children>
+                        <Text id="welcome-text" text="Brute Force Search" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                              GridPane.rowIndex="0"/>
 
-       <Label text="jobs:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-       <TextField fx:id="jobs" promptText="1-6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="instances" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="instances" alignment="TOP_LEFT" promptText="1-20" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1"/>
 
-       <Label text="processing time range:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-       <TextField fx:id="processingTimeRange" promptText="100" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="jobs:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="jobs" promptText="1-6" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-       <Label text="weight range:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-       <TextField fx:id="weightRange" promptText="20" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label text="processing time range:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <TextField fx:id="processingTimeRange" promptText="100" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="3"/>
 
-       <Label text="filename:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-       <TextField fx:id="filename" promptText="default filename" GridPane.columnIndex="1" GridPane.rowIndex="5"
-       disable="true"/>
+                        <Label text="weight range:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <TextField fx:id="weightRange" promptText="20" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
-           <children>
-                  <Button onAction="#handleCreateFileButtonAction" text="Create File" />
-           </children>
-       </HBox>
+                        <Label text="filename:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                        <TextField fx:id="filenameBFS" promptText="default filename" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="5"
+                                   disable="true"/>
 
-       <LineChart fx:id="graph" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="8">
-           <xAxis><NumberAxis label="job order" lowerBound="0" upperBound="3" tickUnit="1"/></xAxis>
-           <yAxis><NumberAxis label="weighted tardiness" lowerBound="0" upperBound="3" tickUnit="1"/></yAxis>
-       </LineChart>
+                        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <children>
+                                <Button onAction="#handleCreateFileButtonAction" text="Create File"/>
+                            </children>
+                        </HBox>
 
-    </children>
-    <stylesheets>
-        <URL value="@Scheme.css" />
-    </stylesheets>
-</GridPane>
+                        <LineChart fx:id="graph1" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="8">
+                            <xAxis>
+                                <NumberAxis label="instances" lowerBound="0" upperBound="3" tickUnit="1"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="weighted tardiness" lowerBound="0" upperBound="3" tickUnit="1"/>
+                            </yAxis>
+                        </LineChart>
+                    </children>
+                    <stylesheets>
+                        <URL value="@Scheme.css"/>
+                    </stylesheets>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab text="Simulated Annealing">
+            <content>
+                <GridPane alignment="CENTER_LEFT" hgap="10" prefHeight="294.0" prefWidth="366.0" styleClass="root"
+                          vgap="10" xmlns="http://javafx.com/javafx/8">
+                    <padding>
+                        <Insets bottom="10" left="25" right="25" top="25"/>
+                    </padding>
+                    <children>
+                        <Text id="welcome-text" text="Simulated Annealing" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                              GridPane.rowIndex="0"/>
+
+                        <Label text="initial temperature" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="temperature" alignment="TOP_LEFT" promptText="100000" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1"/>
+
+                        <Label text="cooling rate:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="coolingRate" promptText="0.003" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                        <Label text="instances" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <TextField fx:id="instancesSA" promptText="125" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                        <Label text="jobs" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <TextField fx:id="jobsSA" promptText="40" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                        <Label text="load File: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                        <TextField fx:id="filepathSA" promptText="/Users/krystian/Documents/studia/X_semester/Project_1_(IFN701)/test_files/wt40.txt" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="5"/>
+
+                        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <children>
+                                <Button onAction="#handleRunSAButtonAction" text="Run Simulated Annealing"/>
+                            </children>
+                        </HBox>
+
+                        <LineChart fx:id="graph2" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="8">
+                            <xAxis>
+                                <NumberAxis label="instances" lowerBound="0" upperBound="3" tickUnit="1"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="weighted tardiness" lowerBound="0" upperBound="3" tickUnit="1"/>
+                            </yAxis>
+                        </LineChart>
+
+                    </children>
+                    <stylesheets>
+                        <URL value="@Scheme.css"/>
+                    </stylesheets>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab text="Tabu Search">
+            <content>
+                <GridPane alignment="CENTER_LEFT" hgap="10" prefHeight="294.0" prefWidth="366.0" styleClass="root"
+                          vgap="10" xmlns="http://javafx.com/javafx/8">
+                    <padding>
+                        <Insets bottom="10" left="25" right="25" top="25"/>
+                    </padding>
+                    <children>
+                        <Text id="welcome-text" text="Tabu Search" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                              GridPane.rowIndex="0"/>
+
+                        <Label text="tabu length" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="tabuLength" alignment="TOP_LEFT" promptText="10" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1"/>
+
+                        <Label text="number of iterations:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="numberOfIterations" promptText="100" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                        <Label text="instances" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <TextField fx:id="instancesTS" promptText="125" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                        <Label text="jobs" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <TextField fx:id="jobsTS" promptText="40" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                        <Label text="load File: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                        <TextField fx:id="filepathTS" promptText="/Users/krystian/Documents/studia/X_semester/Project_1_(IFN701)/test_files/wt40.txt" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="5"/>
+
+                        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <children>
+                                <Button onAction="#handleRunTSButtonAction" text="Run Tabu Search"/>
+                            </children>
+                        </HBox>
+
+                        <LineChart fx:id="graph3" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="8">
+                            <xAxis>
+                                <NumberAxis label="instances" lowerBound="0" upperBound="3" tickUnit="1"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="weighted tardiness" lowerBound="0" upperBound="3" tickUnit="1"/>
+                            </yAxis>
+                        </LineChart>
+
+                    </children>
+                    <stylesheets>
+                        <URL value="@Scheme.css"/>
+                    </stylesheets>
+                </GridPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
